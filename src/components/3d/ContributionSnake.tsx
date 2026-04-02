@@ -15,11 +15,11 @@ import {
 // default baseline cell size, overwritten by responsive layout
 const BASE_CELL_SIZE = 12;
 const CELL_GAP = 2;
+const MOBILE_CELL_GAP = 1;
 const CELL_RADIUS = 2;
 const TICK_MS = 60; // snake speed
 const LIVE_REFRESH_MS = 5 * 60 * 1000;
 const MIN_CELL_SIZE = 4;
-const MOBILE_MIN_CELL_SIZE = 6.5;
 const EATEN_RECOVERY_MS = 2000;
 const EATEN_FADE_STEP = TICK_MS / EATEN_RECOVERY_MS;
 
@@ -69,6 +69,7 @@ interface GameState {
   fadeAlpha: Map<string, number>;
   stats: Stats;
   cellSize: number; // dynamic size
+  cellGap: number;
 }
 
 // ─── Pathfinding: BFS to nearest food ─────────────────────────
@@ -354,6 +355,7 @@ export default function ContributionSnake() {
         fadeAlpha: new Map<string, number>(),
         stats,
         cellSize,
+        cellGap: CELL_GAP,
       };
     },
     []
@@ -465,9 +467,10 @@ export default function ContributionSnake() {
     const w = canvas.clientWidth;
     const h = canvas.clientHeight;
     const cSize = s.cellSize;
+    const cellGap = s.cellGap;
 
-    const gridW = COLS * (cSize + CELL_GAP) - CELL_GAP;
-    const gridH = ROWS * (cSize + CELL_GAP) - CELL_GAP;
+    const gridW = COLS * (cSize + cellGap) - cellGap;
+    const gridH = ROWS * (cSize + cellGap) - cellGap;
     const offsetX = (w - gridW) / 2;
     const offsetY = (h - gridH) / 2;
 
@@ -476,8 +479,8 @@ export default function ContributionSnake() {
     // Draw grid cells
     for (let r = 0; r < ROWS; r++) {
       for (let c = 0; c < COLS; c++) {
-        const x = offsetX + c * (cSize + CELL_GAP);
-        const y = offsetY + r * (cSize + CELL_GAP);
+        const x = offsetX + c * (cSize + cellGap);
+        const y = offsetY + r * (cSize + cellGap);
         const key = `${r},${c}`;
 
         const fadeVal = s.fadeAlpha.get(key);
@@ -515,8 +518,8 @@ export default function ContributionSnake() {
 
     for (let i = s.snake.length - 1; i >= 0; i--) {
       const p = s.snake[i];
-      const x = offsetX + p.c * (cSize + CELL_GAP);
-      const y = offsetY + p.r * (cSize + CELL_GAP);
+      const x = offsetX + p.c * (cSize + cellGap);
+      const y = offsetY + p.r * (cSize + cellGap);
 
       const alpha = 0.4 + 0.6 * (1 - i / s.snake.length);
       ctx.globalAlpha = alpha;
@@ -644,17 +647,17 @@ export default function ContributionSnake() {
       
       const rect = viewportRef.current.getBoundingClientRect();
       const availableWidth = Math.max(0, rect.width);
-      const minCellSize = isMobile ? MOBILE_MIN_CELL_SIZE : MIN_CELL_SIZE;
+      const cellGap = isMobile ? MOBILE_CELL_GAP : CELL_GAP;
       const newCSize = Math.max(
-        minCellSize,
-        (availableWidth - (COLS - 1) * CELL_GAP) / COLS
+        MIN_CELL_SIZE,
+        (availableWidth - (COLS - 1) * cellGap) / COLS
       );
 
       stateRef.current.cellSize = newCSize;
+      stateRef.current.cellGap = cellGap;
 
-      const gridH = ROWS * (newCSize + CELL_GAP) - CELL_GAP;
-      const gridW = COLS * (newCSize + CELL_GAP) - CELL_GAP;
-      const layoutWidth = Math.max(rect.width, gridW);
+      const gridH = ROWS * (newCSize + cellGap) - cellGap;
+      const layoutWidth = rect.width;
       const layoutHeight = gridH;
       
       // DPI setup
@@ -695,7 +698,7 @@ export default function ContributionSnake() {
       {/* Canvas */}
       <div
         ref={viewportRef}
-        className="w-full overflow-x-auto overflow-y-hidden"
+        className="w-full flex items-center justify-center overflow-hidden"
         style={{ backgroundColor: BG_COLOR }}
       >
         {loading ? (
@@ -707,13 +710,11 @@ export default function ContributionSnake() {
             {errorMsg}
           </span>
         ) : (
-          <div className="mx-auto flex w-max min-w-full justify-center">
-            <canvas
-              ref={canvasRef}
-              className="block shrink-0"
-              style={{ imageRendering: "pixelated" }}
-            />
-          </div>
+          <canvas
+            ref={canvasRef}
+            className="block"
+            style={{ imageRendering: "pixelated" }}
+          />
         )}
       </div>
 

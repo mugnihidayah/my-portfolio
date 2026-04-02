@@ -899,11 +899,15 @@ a,
 .ds-panel-hint {
   display: inline-flex;
   align-items: center;
+  flex-wrap: wrap;
   gap: 6px;
+  min-width: 0;
+  max-width: 100%;
   color: var(--editor-fg);
   opacity: 0.56;
   font-size: 11.5px;
   line-height: 1.4;
+  overflow-wrap: anywhere;
 }
 .ds-empty-state {
   display: flex;
