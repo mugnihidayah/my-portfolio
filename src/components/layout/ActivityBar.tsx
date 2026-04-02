@@ -110,7 +110,7 @@ export default function ActivityBar({
         style={{
           backgroundColor: "var(--activitybar-bg)",
           borderColor: "var(--border-color)",
-          minHeight: "64px",
+          minHeight: "72px",
         }}
       >
         {mobileItems.map((item, i) => {
@@ -132,7 +132,7 @@ export default function ActivityBar({
             <button
               key={i}
               onClick={onClick}
-              className="flex min-h-16 flex-col items-center justify-center gap-1 px-1.5 transition-colors active:scale-95"
+              className="flex min-h-18 flex-col items-center justify-center gap-1 px-1.5 pt-1 transition-colors active:scale-95"
               style={{
                 color: isActive
                   ? "var(--activitybar-fg)"
