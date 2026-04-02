@@ -2,6 +2,7 @@
 
 import { useRef, useEffect, useCallback, useState } from "react";
 import { profile } from "@/data/profile";
+import { useMobile } from "@/hooks/useMobile";
 import {
   buildGitHubContributionGrid,
   extractGithubUsername,
@@ -18,6 +19,7 @@ const CELL_RADIUS = 2;
 const TICK_MS = 60; // snake speed
 const LIVE_REFRESH_MS = 5 * 60 * 1000;
 const MIN_CELL_SIZE = 4;
+const MOBILE_MIN_CELL_SIZE = 6.5;
 const EATEN_RECOVERY_MS = 2000;
 const EATEN_FADE_STEP = TICK_MS / EATEN_RECOVERY_MS;
 
@@ -310,6 +312,7 @@ export default function ContributionSnake() {
   const [loading, setLoading] = useState(true);
   const [errorMsg, setErrorMsg] = useState<string | null>(null);
   const fetchedGridRef = useRef<number[][] | null>(null);
+  const isMobile = useMobile(768);
 
   const buildInitialState = useCallback(
     (grid: number[][], cellSize: number, overrideTotal?: number): GameState => {
@@ -641,15 +644,17 @@ export default function ContributionSnake() {
       
       const rect = viewportRef.current.getBoundingClientRect();
       const availableWidth = Math.max(0, rect.width);
+      const minCellSize = isMobile ? MOBILE_MIN_CELL_SIZE : MIN_CELL_SIZE;
       const newCSize = Math.max(
-        MIN_CELL_SIZE,
+        minCellSize,
         (availableWidth - (COLS - 1) * CELL_GAP) / COLS
       );
 
       stateRef.current.cellSize = newCSize;
 
       const gridH = ROWS * (newCSize + CELL_GAP) - CELL_GAP;
-      const layoutWidth = rect.width;
+      const gridW = COLS * (newCSize + CELL_GAP) - CELL_GAP;
+      const layoutWidth = Math.max(rect.width, gridW);
       const layoutHeight = gridH;
       
       // DPI setup
@@ -683,14 +688,14 @@ export default function ContributionSnake() {
       clearInterval(timer);
       window.removeEventListener("resize", handleResize);
     };
-  }, [loading, draw, tick]);
+  }, [loading, draw, tick, isMobile]);
 
   return (
     <div className="ds-card p-0 overflow-hidden" ref={containerRef}>
       {/* Canvas */}
       <div
         ref={viewportRef}
-        className="w-full flex items-center justify-center overflow-hidden"
+        className="w-full overflow-x-auto overflow-y-hidden"
         style={{ backgroundColor: BG_COLOR }}
       >
         {loading ? (
@@ -702,17 +707,19 @@ export default function ContributionSnake() {
             {errorMsg}
           </span>
         ) : (
-          <canvas
-            ref={canvasRef}
-            className="block"
-            style={{ imageRendering: "pixelated" }}
-          />
+          <div className="mx-auto flex w-max min-w-full justify-center">
+            <canvas
+              ref={canvasRef}
+              className="block shrink-0"
+              style={{ imageRendering: "pixelated" }}
+            />
+          </div>
         )}
       </div>
 
       {/* Bottom info bar */}
       <div
-        className="px-5 py-3 flex flex-wrap items-center justify-between gap-3 border-t"
+        className="px-4 py-3 flex flex-wrap items-center justify-between gap-3 border-t md:px-5"
         style={{ borderColor: "var(--border-color)" }}
       >
         {stats ? (
