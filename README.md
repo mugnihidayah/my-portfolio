@@ -4,7 +4,7 @@
 
 ### Interactive AI Engineer Workspace
 
-[![Live Site](https://img.shields.io/badge/Live-mugnihidayah.dev-007ACC?style=for-the-badge&logo=vercel&logoColor=white)](https://mugnihidayah.dev)
+[![Live Site](https://img.shields.io/badge/Live-mugnihidayah-007ACC?style=for-the-badge&logo=vercel&logoColor=white)](https://mugnihidayah.dev)
 [![Next.js](https://img.shields.io/badge/Next.js-16-000000?style=for-the-badge&logo=nextdotjs&logoColor=white)](https://nextjs.org)
 [![React](https://img.shields.io/badge/React-19-149ECA?style=for-the-badge&logo=react&logoColor=white)](https://react.dev)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5-3178C6?style=for-the-badge&logo=typescript&logoColor=white)](https://www.typescriptlang.org)
