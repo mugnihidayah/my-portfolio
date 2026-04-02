@@ -161,7 +161,7 @@ export default function Home() {
           <ErrorBoundary>
             {!isBooted && <BootSequence onComplete={() => setIsBooted(true)} />}
             <div 
-              className={`h-screen w-screen flex flex-col overflow-hidden transition-all duration-300 ease-out ${isBooted ? "ide-reveal" : ""}`} 
+              className={`h-[100dvh] min-h-[100dvh] w-screen flex flex-col overflow-hidden transition-all duration-300 ease-out ${isBooted ? "ide-reveal" : ""}`} 
               style={!isBooted ? { visibility: "hidden" } : undefined}
               data-command-palette-open={commandPaletteOpen}
             >
@@ -188,11 +188,13 @@ export default function Home() {
                 )}
               </div>
 
-              <ActivityBar
-                isMobile={isMobile}
-                onOpenSidebar={() => setMobileSidebarOpen(true)}
-              />
-              <StatusBar isMobile={isMobile} />
+              <div className="fixed inset-x-0 bottom-0 z-40 flex flex-col">
+                <ActivityBar
+                  isMobile={isMobile}
+                  onOpenSidebar={() => setMobileSidebarOpen(true)}
+                />
+                <StatusBar isMobile={isMobile} />
+              </div>
 
               <Sheet open={mobileSidebarOpen} onOpenChange={setMobileSidebarOpen}>
                 <SheetContent

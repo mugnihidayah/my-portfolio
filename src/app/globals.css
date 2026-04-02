@@ -1206,11 +1206,11 @@ a,
   }
 
   .mobile-bottom-offset {
-    padding-bottom: calc(6.5rem + env(safe-area-inset-bottom, 0px));
+    padding-bottom: calc(7.5rem + env(safe-area-inset-bottom, 0px));
   }
 
   .mobile-floating-offset {
-    bottom: calc(7rem + env(safe-area-inset-bottom, 0px));
+    bottom: calc(8rem + env(safe-area-inset-bottom, 0px));
   }
 
   .mobile-scrolltop-offset {

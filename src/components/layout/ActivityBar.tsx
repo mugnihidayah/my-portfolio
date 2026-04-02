@@ -106,7 +106,7 @@ export default function ActivityBar({
 
     return (
       <div
-        className="grid grid-cols-4 shrink-0 border-t safe-bottom"
+        className="grid grid-cols-4 shrink-0 border-t"
         style={{
           backgroundColor: "var(--activitybar-bg)",
           borderColor: "var(--border-color)",
