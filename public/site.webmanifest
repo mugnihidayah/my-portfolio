@@ -1,0 +1,21 @@
+{
+  "name": "Mugni Hidayah — AI Engineer Portfolio",
+  "short_name": "MH Portfolio",
+  "description": "AI Engineer specializing in LLM, NLP, and Machine Learning",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#1e1e1e",
+  "theme_color": "#007acc",
+  "icons": [
+    {
+      "src": "/favicon-32x32.png",
+      "sizes": "32x32",
+      "type": "image/png"
+    },
+    {
+      "src": "/apple-touch-icon.png",
+      "sizes": "180x180",
+      "type": "image/png"
+    }
+  ]
+}

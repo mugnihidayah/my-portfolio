@@ -1,0 +1,51 @@
+<svg width="1600" height="900" viewBox="0 0 1600 900" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1600" height="900" rx="28" fill="#111827"/>
+  <rect x="32" y="32" width="1536" height="836" rx="22" fill="#0F172A" stroke="#334155" stroke-width="2"/>
+  <rect x="72" y="72" width="1456" height="60" rx="16" fill="#111827" stroke="#334155"/>
+  <circle cx="112" cy="102" r="8" fill="#F87171"/>
+  <circle cx="140" cy="102" r="8" fill="#FBBF24"/>
+  <circle cx="168" cy="102" r="8" fill="#34D399"/>
+  <rect x="220" y="84" width="410" height="36" rx="10" fill="#1E293B"/>
+  <text x="248" y="108" fill="#E2E8F0" font-family="Segoe UI, Arial, sans-serif" font-size="20" font-weight="700">Real-time Emotion Analytics Dashboard</text>
+
+  <rect x="72" y="168" width="960" height="652" rx="20" fill="#111827" stroke="#334155"/>
+  <text x="112" y="220" fill="#5EEAD4" font-family="Segoe UI, Arial, sans-serif" font-size="22" font-weight="700">Live Camera Feed</text>
+  <rect x="112" y="256" width="880" height="500" rx="22" fill="#020617" stroke="#334155"/>
+  <circle cx="516" cy="488" r="120" fill="#1E293B"/>
+  <circle cx="474" cy="460" r="16" fill="#F8FAFC"/>
+  <circle cx="558" cy="460" r="16" fill="#F8FAFC"/>
+  <path d="M448 548C472 580 560 580 584 548" stroke="#F8FAFC" stroke-width="12" stroke-linecap="round"/>
+  <rect x="400" y="340" width="232" height="300" rx="24" stroke="#22D3EE" stroke-width="4" stroke-dasharray="16 12"/>
+
+  <rect x="152" y="294" width="198" height="84" rx="18" fill="#172554" stroke="#3B82F6"/>
+  <text x="180" y="332" fill="#BFDBFE" font-family="Segoe UI, Arial, sans-serif" font-size="18" font-weight="700">Emotion</text>
+  <text x="180" y="362" fill="#E2E8F0" font-family="Segoe UI, Arial, sans-serif" font-size="28" font-weight="700">Happy</text>
+
+  <rect x="754" y="294" width="198" height="84" rx="18" fill="#052E2B" stroke="#14B8A6"/>
+  <text x="782" y="332" fill="#99F6E4" font-family="Segoe UI, Arial, sans-serif" font-size="18" font-weight="700">Engagement</text>
+  <text x="782" y="362" fill="#F0FDFA" font-family="Segoe UI, Arial, sans-serif" font-size="28" font-weight="700">0.82</text>
+
+  <rect x="152" y="658" width="800" height="58" rx="16" fill="#0F172A" stroke="#334155"/>
+  <path d="M184 694C222 674 252 668 284 680C320 694 350 710 390 696C438 678 466 640 512 652C560 666 604 718 648 704C694 690 726 630 772 640C820 652 860 694 920 682" stroke="#22D3EE" stroke-width="8" stroke-linecap="round"/>
+
+  <rect x="1072" y="168" width="456" height="652" rx="20" fill="#111827" stroke="#334155"/>
+  <text x="1112" y="220" fill="#93C5FD" font-family="Segoe UI, Arial, sans-serif" font-size="22" font-weight="700">Pipeline</text>
+
+  <rect x="1112" y="264" width="376" height="88" rx="18" fill="#0F172A" stroke="#334155"/>
+  <text x="1144" y="304" fill="#E2E8F0" font-family="Segoe UI, Arial, sans-serif" font-size="18" font-weight="700">1. YOLOv8 face detection</text>
+  <text x="1144" y="332" fill="#94A3B8" font-family="Segoe UI, Arial, sans-serif" font-size="16">Detects face regions from live frames</text>
+
+  <rect x="1292" y="360" width="8" height="34" rx="4" fill="#2563EB"/>
+  <rect x="1112" y="408" width="376" height="88" rx="18" fill="#0F172A" stroke="#334155"/>
+  <text x="1144" y="448" fill="#E2E8F0" font-family="Segoe UI, Arial, sans-serif" font-size="18" font-weight="700">2. Emotion CNN</text>
+  <text x="1144" y="476" fill="#94A3B8" font-family="Segoe UI, Arial, sans-serif" font-size="16">Classifies seven emotions from cropped faces</text>
+
+  <rect x="1292" y="504" width="8" height="34" rx="4" fill="#2563EB"/>
+  <rect x="1112" y="552" width="376" height="88" rx="18" fill="#0F172A" stroke="#334155"/>
+  <text x="1144" y="592" fill="#E2E8F0" font-family="Segoe UI, Arial, sans-serif" font-size="18" font-weight="700">3. EMA + engagement scoring</text>
+  <text x="1144" y="620" fill="#94A3B8" font-family="Segoe UI, Arial, sans-serif" font-size="16">Smooths predictions and turns them into readable analytics</text>
+
+  <rect x="1112" y="688" width="376" height="92" rx="18" fill="#172554" stroke="#3B82F6"/>
+  <text x="1144" y="730" fill="#BFDBFE" font-family="Segoe UI, Arial, sans-serif" font-size="18" font-weight="700">Production signal</text>
+  <text x="1144" y="764" fill="#E2E8F0" font-family="Segoe UI, Arial, sans-serif" font-size="30" font-weight="700">30 to 60 FPS</text>
+</svg>
