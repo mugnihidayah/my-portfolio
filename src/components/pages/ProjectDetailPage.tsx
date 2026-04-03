@@ -41,7 +41,7 @@ import {
 const ArchitectureDiagram = lazy(() => import("./ArchitectureDiagram"));
 
 const defaultImageLayout = {
-  detailHeight: { mobile: 220, desktop: 360 },
+  detailHeight: { mobile: 240, desktop: 420 },
   detailMaxWidth: { mobile: "100%", desktop: "100%" },
 };
 
@@ -51,15 +51,33 @@ function isUsableLink(url?: string) {
 
 function getYouTubeEmbedUrl(url: string | undefined): string | undefined {
   if (!url) return undefined;
-  if (url.includes("youtube-nocookie.com/embed/")) return url;
-  if (url.includes("/embed/")) {
-    return url.replace("https://www.youtube.com/embed/", "https://www.youtube-nocookie.com/embed/");
+  try {
+    const parsedUrl = new URL(url);
+    const host = parsedUrl.hostname.replace(/^www\./, "");
+    const pathSegments = parsedUrl.pathname.split("/").filter(Boolean);
+
+    let videoId = "";
+
+    if (host === "youtu.be") {
+      videoId = pathSegments[0] ?? "";
+    } else if (host === "youtube.com" || host === "m.youtube.com") {
+      if (pathSegments[0] === "watch") {
+        videoId = parsedUrl.searchParams.get("v") ?? "";
+      } else if (pathSegments[0] === "embed" || pathSegments[0] === "shorts") {
+        videoId = pathSegments[1] ?? "";
+      }
+    } else if (host === "youtube-nocookie.com") {
+      if (pathSegments[0] === "embed") {
+        videoId = pathSegments[1] ?? "";
+      }
+    }
+
+    if (!/^[\w-]{11}$/.test(videoId)) return url;
+
+    return `https://www.youtube.com/embed/${videoId}`;
+  } catch {
+    return url;
   }
-  const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|&v=)([^#&?]*).*/;
-  const match = url.match(regExp);
-  return (match && match[2].length === 11)
-    ? `https://www.youtube-nocookie.com/embed/${match[2]}`
-    : url;
 }
 
 function resolveResponsiveNumber(
@@ -215,7 +233,7 @@ function ArtifactsSection({
                 </p>
                 {!isMobile && index < artifacts.flowSteps.length - 1 && (
                   <div
-                    className="absolute right-[-12px] top-1/2 z-[1] -translate-y-1/2 rounded-full border p-1"
+                    className="absolute -right-3 top-1/2 z-1 -translate-y-1/2 rounded-full border p-1"
                     style={{
                       borderColor: "var(--border-color)",
                       backgroundColor: "var(--sidebar-bg)",
@@ -584,7 +602,7 @@ export default function ProjectDetailPage({ slug }: ProjectDetailPageProps) {
         <div className="flex min-w-0 items-start justify-between gap-4 flex-wrap">
           <div className="flex min-w-0 items-center gap-3">
             <Folder size={28} style={{ color: "var(--accent-color)" }} />
-            <h1 className="ds-page-title text-2xl md:text-3xl break-words">
+            <h1 className="ds-page-title text-2xl md:text-3xl wrap-break-word">
               {project.title}
             </h1>
           </div>
@@ -634,7 +652,6 @@ export default function ProjectDetailPage({ slug }: ProjectDetailPageProps) {
               allowFullScreen
               loading="lazy"
               referrerPolicy="strict-origin-when-cross-origin"
-              sandbox="allow-same-origin allow-scripts allow-popups allow-presentation"
               className="absolute top-0 left-0 w-full h-full border-0"
             />
           </div>

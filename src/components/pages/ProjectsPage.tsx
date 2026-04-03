@@ -26,9 +26,9 @@ import {
 import { useStaggerAnimation } from "@/hooks/useStaggerAnimation";
 
 const defaultImageLayout = {
-  featuredHeight: { mobile: 150, desktop: 188 },
+  featuredHeight: { mobile: 220, desktop: 320 },
   cardHeight: { mobile: 104, desktop: 124 },
-  featuredMaxWidth: { mobile: "100%", desktop: "100%" },
+  featuredMaxWidth: { mobile: "100%", desktop: "84%" },
   cardMaxWidth: { mobile: "100%", desktop: "100%" },
 };
 

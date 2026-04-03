@@ -492,9 +492,9 @@ export const projects: Project[] = [
     ],
     domains: ["GenAI / LLMs"],
     github: "https://github.com/mugnihidayah/interview-ai",
-    demo: "#",
-    videoUrl: "#",
-    image: "/projects/interview-ai-dashboard.svg",
+    demo: "https://interview-ai-sooty-one.vercel.app/",
+    videoUrl: "https://youtu.be/NzikfL-I_oo?si=CNGo4ruqt3MMOiyn",
+    image: "/projects/interview-ai.webp",
     status: "in-progress",
     featured: true,
     caseStudy: {
