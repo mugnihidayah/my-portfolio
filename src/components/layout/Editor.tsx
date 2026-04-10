@@ -202,7 +202,7 @@ export default function Editor() {
             className={`mx-auto w-full h-full min-w-0 overflow-y-auto overflow-x-hidden ${
               isMobile
                 ? "px-6 py-8 mobile-bottom-offset"
-                : "px-8 md:px-12 lg:px-40 py-20"
+                : "px-8 md:px-12 lg:px-28 py-20"
             }`}
           >
             <FadeIn tabKey={activeTab}>

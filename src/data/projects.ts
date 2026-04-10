@@ -177,7 +177,7 @@ export const projects: Project[] = [
     domains: ["GenAI / LLMs"],
     github: "https://github.com/mugnihidayah/synapse-instant-document-insight",
     demo: "https://synapse-rag.vercel.app/",
-    videoUrl: "https://www.youtube.com/watch?v=zjkBMFhNj_g",
+    videoUrl: "https://youtu.be/KQKeUPMTZvQ",
     image: "/projects/synapse-rag-v2.jpg",
     imageLayout: {
       position: "center top",
